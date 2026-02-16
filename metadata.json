@@ -1,0 +1,7 @@
+{
+  "name": "Autoservis Vysočany - Modern Precision",
+  "description": "Prémiový autoservis v srdci Prahy 9 s moderním designem a profesionálním přístupem.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
