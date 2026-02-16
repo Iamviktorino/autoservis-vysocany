@@ -212,7 +212,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Nav */}
       <div 
-        className={`fixed inset-0 bg-[#0F0F0F] z-[9999] transition-all duration-500 lg:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed top-0 left-0 w-full h-screen bg-black z-[9999] transition-all duration-500 lg:hidden flex flex-col items-center justify-center ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsMenuOpen(false)}
       >
         <button
@@ -223,7 +223,7 @@ const Header: React.FC = () => {
         >
           <X size={24} />
         </button>
-        <div className="flex flex-col items-center justify-center h-full space-y-10 px-6" onClick={(e) => e.stopPropagation()}>
+        <div className="flex flex-col items-center justify-center space-y-10 px-6" onClick={(e) => e.stopPropagation()}>
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -610,7 +610,7 @@ const Reservation: React.FC = () => {
                 <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-gray-500 mb-2">Jaký servis potřebujete?</label>
                 <textarea rows={4} className="w-full bg-[#161616] border border-white/10 p-4 text-white focus:border-brand-orange outline-none transition-colors" placeholder="Výměna oleje, kontrola brzd..."></textarea>
               </div>
-              <button className="w-full bg-brand-orange hover:bg-white hover:text-brand-black text-white font-black py-5 uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-3 group">
+              <button className="w-full bg-brand-orange hover:bg-white hover:text-brand-black text-white font-black py-5 uppercase tracking-[0.3em] transition-all flex flex-row items-center justify-center gap-3 group">
                 Odeslat poptávku
                 <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
