@@ -152,6 +152,23 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        const hasModal = !!document.querySelector('[aria-modal="true"]');
+        if (!hasModal) {
+          document.body.style.overflow = 'unset';
+        }
+      };
+    } else {
+      const hasModal = !!document.querySelector('[aria-modal="true"]');
+      if (!hasModal) {
+        document.body.style.overflow = 'unset';
+      }
+    }
+  }, [isMenuOpen]);
+
   const navLinks = [
     { name: 'Služby', href: '#sluzby' },
     { name: 'Ceník', href: '#cenik' },
@@ -195,18 +212,18 @@ const Header: React.FC = () => {
 
       {/* Mobile Nav */}
       <div 
-        className={`fixed inset-0 bg-[#0F0F0F] z-50 transition-all duration-500 lg:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 bg-[#0F0F0F] z-[9999] transition-all duration-500 lg:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsMenuOpen(false)}
       >
-        <div className="relative flex flex-col items-center justify-center h-full space-y-10 px-6" onClick={(e) => e.stopPropagation()}>
-          <button
-            type="button"
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute top-6 right-6 p-3 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors"
-            aria-label="Zavřít menu"
-          >
-            <X size={24} />
-          </button>
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute top-6 right-6 p-3 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors"
+          aria-label="Zavřít menu"
+        >
+          <X size={24} />
+        </button>
+        <div className="flex flex-col items-center justify-center h-full space-y-10 px-6" onClick={(e) => e.stopPropagation()}>
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -541,7 +558,7 @@ const PriceList: React.FC = () => {
             {prices.map((item, idx) => (
               <div key={idx} className="flex justify-between items-center p-6 md:p-8 border-b border-white/5 hover:bg-brand-orange/[0.03] transition-colors group">
                 <span className="font-bold text-base md:text-lg text-white group-hover:text-brand-orange transition-colors">{item.service}</span>
-                <span className="font-heading font-black text-brand-orange text-base md:text-xl whitespace-nowrap">{item.price}</span>
+                <span className="font-heading font-black text-brand-orange text-base md:text-xl inline-block whitespace-nowrap">{item.price}</span>
               </div>
             ))}
           </div>
