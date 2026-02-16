@@ -194,8 +194,11 @@ const Header: React.FC = () => {
       </div>
 
       {/* Mobile Nav */}
-      <div className={`fixed inset-0 bg-[#0F0F0F] z-40 transition-all duration-500 lg:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className="flex flex-col items-center justify-center h-full space-y-10 px-6">
+      <div 
+        className={`fixed inset-0 bg-[#0F0F0F] z-40 transition-all duration-500 lg:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsMenuOpen(false)}
+      >
+        <div className="flex flex-col items-center justify-center h-full space-y-10 px-6" onClick={(e) => e.stopPropagation()}>
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -258,7 +261,7 @@ const Hero: React.FC = () => {
           <p className="text-lg md:text-2xl text-gray-300 mb-12 max-w-2xl leading-relaxed font-light">
             Profesionální diagnostika, rychlý servis a náhradní vozy. Jsme jen 5 minut od Galerie Fénix. Vaše auto si zaslouží špičkovou péči.
           </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-8 md:mb-0">
             <a 
               href="#rezervace" 
               className="bg-brand-orange hover:bg-white hover:text-brand-black text-white px-10 py-5 font-black text-sm transition-all uppercase tracking-[0.2em] flex items-center justify-center group"
@@ -459,8 +462,8 @@ const About: React.FC = () => {
 
             <div className="flex items-center space-x-12">
               <div>
-                <div className="text-5xl font-heading font-black text-white tracking-tighter">1 500+</div>
-                <div className="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em] mt-2">Zakázek ročně</div>
+                <div className="text-4xl md:text-5xl font-heading font-black text-white tracking-tighter whitespace-nowrap">1 500+</div>
+                <div className="text-[9px] md:text-[10px] uppercase font-black text-gray-500 tracking-[0.2em] mt-2 whitespace-nowrap">Zakázek ročně</div>
               </div>
               <div className="w-px h-16 bg-white/10"></div>
               <div>
@@ -528,9 +531,9 @@ const PriceList: React.FC = () => {
 
           <div className="bg-[#121212] border border-white/5 shadow-2xl">
             {prices.map((item, idx) => (
-              <div key={idx} className="flex justify-between items-center p-8 border-b border-white/5 hover:bg-brand-orange/[0.03] transition-colors group">
-                <span className="font-bold text-lg text-white group-hover:text-brand-orange transition-colors">{item.service}</span>
-                <span className="font-heading font-black text-brand-orange text-xl">{item.price}</span>
+              <div key={idx} className="flex justify-between items-center p-6 md:p-8 border-b border-white/5 hover:bg-brand-orange/[0.03] transition-colors group">
+                <span className="font-bold text-base md:text-lg text-white group-hover:text-brand-orange transition-colors">{item.service}</span>
+                <span className="font-heading font-black text-brand-orange text-lg md:text-xl">{item.price}</span>
               </div>
             ))}
           </div>
@@ -582,9 +585,9 @@ const Reservation: React.FC = () => {
                 <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-gray-500 mb-2">Jaký servis potřebujete?</label>
                 <textarea rows={4} className="w-full bg-[#161616] border border-white/10 p-4 text-white focus:border-brand-orange outline-none transition-colors" placeholder="Výměna oleje, kontrola brzd..."></textarea>
               </div>
-              <button className="w-full bg-brand-orange hover:bg-white hover:text-brand-black text-white font-black py-5 uppercase tracking-[0.3em] transition-all flex items-center justify-center group">
+              <button className="w-full bg-brand-orange hover:bg-white hover:text-brand-black text-white font-black py-5 uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2 group">
                 Odeslat poptávku
-                <Send size={18} className="ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>
           </div>
@@ -598,10 +601,10 @@ const Contact: React.FC = () => {
   return (
     <section id="kontakt" className="py-24 bg-[#0F0F0F]">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-24 items-start">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center lg:items-start text-center lg:text-left">
           <div className="lg:w-2/5">
-            <h2 className="text-brand-orange font-black uppercase tracking-[0.4em] text-xs mb-4">Kde nás najdete</h2>
-            <h3 className="text-4xl md:text-6xl font-heading font-black uppercase mb-16 tracking-tighter">Jsme Vám <br/><span className="text-brand-orange">nablízku</span></h3>
+            <h2 className="text-brand-orange font-black uppercase tracking-[0.4em] text-xs mb-3">Kde nás najdete</h2>
+            <h3 className="text-3xl md:text-6xl font-heading font-black uppercase mb-10 md:mb-16 tracking-tighter">Jsme Vám <br/><span className="text-brand-orange">nablízku</span></h3>
             
             <div className="space-y-12">
               <div className="flex items-start space-x-8">
@@ -610,7 +613,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-black uppercase tracking-[0.2em] mb-3 text-gray-400">Adresa</h4>
-                  <p className="text-white text-2xl font-bold leading-tight">{ADDRESS}</p>
+                  <p className="text-white text-lg md:text-2xl font-bold leading-tight">{ADDRESS}</p>
                 </div>
               </div>
 
@@ -620,7 +623,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-sm font-black uppercase tracking-[0.2em] mb-3 text-gray-400">Provozní doba</h4>
-                  <p className="text-white text-2xl font-bold leading-tight">Po – Pá: 08:00 – 18:00<br />So: 09:00 – 13:00</p>
+                  <p className="text-white text-lg md:text-2xl font-bold leading-tight">Po – Pá: 08:00 – 18:00<br />So: 09:00 – 13:00</p>
                 </div>
               </div>
 
@@ -631,10 +634,10 @@ const Contact: React.FC = () => {
                 <div>
                   <h4 className="text-sm font-black uppercase tracking-[0.2em] mb-3 text-gray-400">Kontaktní osoby</h4>
                   <div className="space-y-3 mt-2">
-                    <a href={PHONE_LINK_ZDENEK} className="block text-xl md:text-2xl font-heading font-black text-white hover:text-brand-orange transition-colors tracking-tighter">
+                    <a href={PHONE_LINK_ZDENEK} className="block text-lg md:text-2xl font-heading font-black text-white hover:text-brand-orange transition-colors tracking-tighter">
                       Zdeněk Přáda: {PHONE_ZDENEK}
                     </a>
-                    <a href={PHONE_LINK_JAN} className="block text-xl md:text-2xl font-heading font-black text-white hover:text-brand-orange transition-colors tracking-tighter">
+                    <a href={PHONE_LINK_JAN} className="block text-lg md:text-2xl font-heading font-black text-white hover:text-brand-orange transition-colors tracking-tighter">
                       Jan Zych: {PHONE_JAN}
                     </a>
                   </div>
@@ -656,7 +659,7 @@ const Contact: React.FC = () => {
                   <p className="text-3xl font-heading font-black uppercase mb-6 tracking-tighter text-white">Navigovat k nám</p>
                   <p className="text-gray-400 max-w-sm mx-auto mb-10 text-lg leading-relaxed font-light">Náš autoservis najdete na hlavní tepně Prahy 9, jen pár minut od Galerie Fénix a metra Vysočanská.</p>
                   <a 
-                    href="https://maps.google.com" 
+                    href="https://www.google.com/maps/dir/?api=1&destination=Autoservis+auto+Přáda+Freyova+569/4." 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-block bg-white text-brand-black px-12 py-5 uppercase font-black text-sm hover:bg-brand-orange hover:text-white transition-all tracking-[0.3em]"
