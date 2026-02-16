@@ -195,10 +195,18 @@ const Header: React.FC = () => {
 
       {/* Mobile Nav */}
       <div 
-        className={`fixed inset-0 bg-[#0F0F0F] z-40 transition-all duration-500 lg:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 bg-[#0F0F0F] z-50 transition-all duration-500 lg:hidden ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsMenuOpen(false)}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-10 px-6" onClick={(e) => e.stopPropagation()}>
+        <div className="relative flex flex-col items-center justify-center h-full space-y-10 px-6" onClick={(e) => e.stopPropagation()}>
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(false)}
+            className="absolute top-6 right-6 p-3 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors"
+            aria-label="Zavřít menu"
+          >
+            <X size={24} />
+          </button>
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -462,7 +470,7 @@ const About: React.FC = () => {
 
             <div className="flex items-center space-x-12">
               <div>
-                <div className="text-4xl md:text-5xl font-heading font-black text-white tracking-tighter whitespace-nowrap">1 500+</div>
+                <div className="inline-flex flex-nowrap text-4xl md:text-5xl font-heading font-black text-white tracking-tighter whitespace-nowrap">1 500+</div>
                 <div className="text-[9px] md:text-[10px] uppercase font-black text-gray-500 tracking-[0.2em] mt-2 whitespace-nowrap">Zakázek ročně</div>
               </div>
               <div className="w-px h-16 bg-white/10"></div>
@@ -513,7 +521,7 @@ const PriceList: React.FC = () => {
   const prices: PriceItem[] = [
     { service: 'Mechanické práce (všechny značky)', price: '450 – 650 Kč / hod' },
     { service: 'Pneuservis (přezutí kompletní sady)', price: 'od 600 Kč' },
-    { service: 'Příprava na STK a emise (včetně vyřízení)', price: '1 500 – 2 500 Kč' },
+    { service: 'Příprava na STK a emise (vč. vyřízení)', price: '1 500 – 2 500 Kč' },
     { service: 'Servis a plnění klimatizace', price: 'od 800 Kč' },
     { service: 'Počítačová diagnostika (profi software)', price: '600 Kč' },
     { service: 'Geometrie (test a seřízení náprav)', price: 'od 800 Kč' },
@@ -533,7 +541,7 @@ const PriceList: React.FC = () => {
             {prices.map((item, idx) => (
               <div key={idx} className="flex justify-between items-center p-6 md:p-8 border-b border-white/5 hover:bg-brand-orange/[0.03] transition-colors group">
                 <span className="font-bold text-base md:text-lg text-white group-hover:text-brand-orange transition-colors">{item.service}</span>
-                <span className="font-heading font-black text-brand-orange text-lg md:text-xl">{item.price}</span>
+                <span className="font-heading font-black text-brand-orange text-base md:text-xl whitespace-nowrap">{item.price}</span>
               </div>
             ))}
           </div>
@@ -585,7 +593,7 @@ const Reservation: React.FC = () => {
                 <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-gray-500 mb-2">Jaký servis potřebujete?</label>
                 <textarea rows={4} className="w-full bg-[#161616] border border-white/10 p-4 text-white focus:border-brand-orange outline-none transition-colors" placeholder="Výměna oleje, kontrola brzd..."></textarea>
               </div>
-              <button className="w-full bg-brand-orange hover:bg-white hover:text-brand-black text-white font-black py-5 uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-2 group">
+              <button className="w-full bg-brand-orange hover:bg-white hover:text-brand-black text-white font-black py-5 uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-3 group">
                 Odeslat poptávku
                 <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
